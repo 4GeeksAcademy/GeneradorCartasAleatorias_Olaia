@@ -1,5 +1,6 @@
-const suits = ["♠", "♥", "♦", "♣"];
-const values = [
+const palo = ["♥︎", "♦︎", "♣︎", "♠︎"];
+
+const numero = [
   "A",
   "2",
   "3",
@@ -15,17 +16,15 @@ const values = [
   "K"
 ];
 
-function generateCard() {
-  const suit = suits[Math.floor(Math.random() * suits.length)];
-  const value = values[Math.floor(Math.random() * values.length)];
-
-  const cardColor = suit === "♥" || suit === "♦" ? "red" : "black";
-
-  document.getElementById("topSuit").textContent = suit;
-  document.getElementById("number").textContent = value;
-  document.getElementById("bottomSuit").textContent = suit;
-
-  document.getElementById("topSuit").style.color = cardColor;
-  document.getElementById("number").style.color = cardColor;
-  document.getElementById("bottomSuit").style.color = cardColor;
-}
+window.onload = function() {
+  const CartAleatoria = paloYNumero =>
+    paloYNumero[Math.floor(Math.random() * paloYNumero.length)];
+  const figura = CartAleatoria(palo);
+  document.querySelector(".number").innerHTML = CartAleatoria(numero);
+  document.querySelector(".top-suit").innerHTML = figura;
+  document.querySelector(".bottom-suit").innerHTML = figura;
+  if (figura == "♣︎" || figura == "♠︎") {
+    document.getElementById("top-suit").style.color = "black";
+    document.getElementById("bottom-suit").style.color = "black";
+  }
+};
